@@ -37,12 +37,22 @@ class App extends Component {
   
       )
   }
-  render() {
+  render() {   //In JavaScript We should write in braces
+    const style ={
+      background : 'white',
+      font : 'inherit',
+      cursor : 'pointer',
+      border : '1px solid blue ',
+      padding : '8px'
+    };
+
     return (
       <div className="App">
        <h1> Hi, I am React App </h1>
        <p> This is my first Site in React </p>
-      <button onClick ={this.switchNameHandler.bind(this, 'Varun!!')}>Switch button</button> 
+      <button 
+      style = {style}
+      onClick ={this.switchNameHandler.bind(this, 'Varun!!')}>Switch button</button> 
       
        <PersonClass 
        name={this.state.persons[0].name} 
