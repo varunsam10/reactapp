@@ -24,7 +24,19 @@ class App extends Component {
 
     )
   }
+ 
+  nameChangeHandler = (event) =>{
 
+    this.setState (    //We should not use this.state
+      {    persons: [
+    {name :'Varun' ,age:'23'}, // WE SHOULD NOT PUT COMMA WHILE PASSING NAME
+    {name : event.target.value,age:'23'}, // How to Dynamically Update the Content The event should have target and it's corresponding value
+    {name :'Avinash Ramesh',age:'25'}
+  ]
+      }
+  
+      )
+  }
   render() {
     return (
       <div className="App">
@@ -39,7 +51,8 @@ class App extends Component {
        <PersonClass 
        name={this.state.persons[1].name} 
        age={this.state.persons[1].age} 
-       click={this.switchNameHandler.bind(this , 'Varun Sampath')}/>  
+       click={this.switchNameHandler.bind(this , 'Varun Sampath')}
+       change={this.nameChangeHandler}/>  
 
        <PersonClass 
        name={this.state.persons[2].name} 
