@@ -8,7 +8,8 @@ class App extends Component {
         {name :'Varun',age:'23'},
         {name :'Ragu',age:'23'},
         {name :'Avinash',age:'24'}
-    ]
+    ],
+    showDetails : false
 }
 
   switchNameHandler = (newName) => {
@@ -37,6 +38,11 @@ class App extends Component {
   
       )
   }
+  togglePersonHandler = () =>{
+    const doesShow = this.state.showDetails;
+    this.setState ({showDetails: !doesShow});
+
+  }
   render() {   //In JavaScript We should write in braces
     const style ={
       background : 'white',
@@ -51,9 +57,10 @@ class App extends Component {
        <h1> Hi, I am React App </h1>
        <p> This is my first Site in React </p>
       <button 
-      style = {style}
-      onClick ={this.switchNameHandler.bind(this, 'Varun!!')}>Switch button</button> 
-      
+      style = {style}  //Below Syntax is If else Statment using ternary operator in react !!Remember Curely braces is for injecting jsx code in JS 
+      onClick ={this.togglePersonHandler}>Toggle button</button> 
+      { this.state.showDetails === true ?   
+        <div>          
        <PersonClass 
        name={this.state.persons[0].name} 
        age={this.state.persons[0].age}/>  
@@ -67,6 +74,8 @@ class App extends Component {
        <PersonClass 
        name={this.state.persons[2].name} 
        age={this.state.persons[2].age}/>  
+       </div> : null
+      }
        </div>
     );
     //return React.createElement('div',{className:'App'},React.createElement('h1',null,'Hi, I am React App Does it work'));
