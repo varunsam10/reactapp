@@ -52,24 +52,19 @@ class App extends Component {
       padding : '8px'
     };
 
-    let persons = null;
+    let persons = null;           //Used for Conditional Operator
     if (this.state.showDetails) 
     {
         persons =(
-        <div>          
-       <PersonClass 
-       name={this.state.persons[0].name} 
-       age={this.state.persons[0].age}/>  
-
-       <PersonClass 
-       name={this.state.persons[1].name} 
-       age={this.state.persons[1].age} 
-       click={this.switchNameHandler.bind(this , 'Varun Sampath')}
-       change={this.nameChangeHandler}/>  
-
-       <PersonClass 
-       name={this.state.persons[2].name} 
-       age={this.state.persons[2].age}/>  
+        <div>  
+        {
+          this.state.persons.map(person => { //This is best method for Javascript Array   Map is the function to Convert Array in Vanilaa JavaScript ES6  person Element map 
+            return <PersonClass
+            name = {person.name}
+            age = {person.age}
+            /> 
+          })
+        }        
        </div>
       );
     }
