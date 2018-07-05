@@ -12,18 +12,11 @@ class App extends Component {
     showDetails : false
 }
 
-  switchNameHandler = (newName) => {
-    //console.log('Was Clicked');
-    
-    this.setState (    //We should not use this.state
-    {    persons: [
-  {name : newName ,age:'23'}, // WE SHOULD NOT PUT COMMA WHILE PASSING NAME
-  {name :'Ragu',age:'23'},
-  {name :'Avinash Ramesh',age:'24'}
-]
-    }
+  deletePersonHandler = (personIndex) => {
+      const persons = this.state.persons;  // Didn't assign new value it's get holding an pointer 
+      persons.splice(personIndex,1); //Changing the element where it is ponting
+      this.setState({persons:persons})  //Set persons to persons constant
 
-    )
   }
  
   nameChangeHandler = (event) =>{
@@ -58,10 +51,11 @@ class App extends Component {
         persons =(
         <div>  
         {
-          this.state.persons.map(person => { //This is best method for Javascript Array   Map is the function to Convert Array in Vanilaa JavaScript ES6  person Element map 
+          this.state.persons.map((person,index)=> { //This is best method for Javascript Array   Map is the function to Convert Array in Vanilaa JavaScript ES6  person Element map   
             return <PersonClass
             name = {person.name}
             age = {person.age}
+            click = {() => this.deletePersonHandler(index)} // We can use arrow function instead of bind indes of delete handle 
             /> 
           })
         }        
