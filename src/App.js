@@ -13,7 +13,8 @@ class App extends Component {
 }
 
   deletePersonHandler = (personIndex) => {
-      const persons = this.state.persons;  // Didn't assign new value it's get holding an pointer 
+      //const persons = this.state.persons;  // Didn't assign new value it's get holding an pointer 
+      const persons = [...this.state.persons]; // Spread Operator 3 dots in ES6 spreads out each element in this array 
       persons.splice(personIndex,1); //Changing the element where it is ponting
       this.setState({persons:persons})  //Set persons to persons constant
 
