@@ -52,14 +52,10 @@ class App extends Component {
       padding : '8px'
     };
 
-    return (
-      <div className="App">
-       <h1> Hi, I am React App </h1>
-       <p> This is my first Site in React </p>
-      <button 
-      style = {style}  //Below Syntax is If else Statment using ternary operator in react !!Remember Curely braces is for injecting jsx code in JS 
-      onClick ={this.togglePersonHandler}>Toggle button</button> 
-      { this.state.showDetails === true ?   
+    let persons = null;
+    if (this.state.showDetails) 
+    {
+        persons =(
         <div>          
        <PersonClass 
        name={this.state.persons[0].name} 
@@ -74,8 +70,17 @@ class App extends Component {
        <PersonClass 
        name={this.state.persons[2].name} 
        age={this.state.persons[2].age}/>  
-       </div> : null
-      }
+       </div>
+      );
+    }
+    return (
+      <div className="App">
+       <h1> Hi, I am React App </h1>
+       <p> This is my first Site in React </p>
+      <button 
+      style = {style}  //Below Syntax is If else Statment using ternary operator in react !!Remember Curely braces is for injecting jsx code in JS 
+      onClick ={this.togglePersonHandler}>Toggle button</button>    
+      {persons}
        </div>
     );
     //return React.createElement('div',{className:'App'},React.createElement('h1',null,'Hi, I am React App Does it work'));
