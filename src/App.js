@@ -5,9 +5,9 @@ import PersonClass from './Person/PersonClass'
 class App extends Component {
   state = {
     persons: [
-        {name :'Varun',age:'23'},
-        {name :'Ragu',age:'23'},
-        {name :'Avinash',age:'24'}
+        {id :"qqqqqq", name :'Varun',age:'23'},
+        {id :"wwwwww",name :'Ragu',age:'23'},
+        {id :"eeeeee",name :'Avinash',age:'24'}
     ],
     showDetails : false
 }
@@ -56,6 +56,7 @@ class App extends Component {
             return <PersonClass
             name = {person.name}
             age = {person.age}
+            key = {person.id}
             click = {() => this.deletePersonHandler(index)} // We can use arrow function instead of bind indes of delete handle 
             /> 
           })
