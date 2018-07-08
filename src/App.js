@@ -48,7 +48,8 @@ class App extends Component {
   }
   render() {   //In JavaScript We should write in braces
     const style ={
-      background : 'white',
+      background : 'green',
+      color : 'white',
       font : 'inherit',
       cursor : 'pointer',
       border : '1px solid blue ',
@@ -73,6 +74,11 @@ class App extends Component {
         }        
        </div>
       );
+      style.backgroundColor = 'red';
+    }
+    else
+    {
+      style.backgroundColor = 'green';
     }
     return (
       <div className="App">
