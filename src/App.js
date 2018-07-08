@@ -20,17 +20,26 @@ class App extends Component {
 
   }
  
-  nameChangeHandler = (event) =>{
+  nameChangeHandler = (event , id) =>{
 
-    this.setState (    //We should not use this.state
-      {    persons: [
-    {name :'Varun' ,age:'23'}, // WE SHOULD NOT PUT COMMA WHILE PASSING NAME
-    {name : event.target.value,age:'23'}, // How to Dynamically Update the Content The event should have target and it's corresponding value
-    {name :'Avinash Ramesh',age:'25'}
-  ]
-      }
-  
-      )
+    const personIndex = this.state.persons.findIndex(p => {
+      return p.id === id;
+    });
+
+    const person = {
+      ...this.state.persons[personIndex]
+    };
+
+    person.name = event.target.value;
+
+
+    const persons = [...this.state.persons];
+    persons[personIndex] = person;
+    
+    //const person = Object.assign({},this.state.persons[personIndex]); Alternate Way to assign object 
+
+    this.setState (    {   person: persons }         ) ;         //We should not use this.state
+     
   }
   togglePersonHandler = () =>{
     const doesShow = this.state.showDetails;
@@ -57,6 +66,7 @@ class App extends Component {
             name = {person.name}
             age = {person.age}
             key = {person.id}
+            change = {(event)=> this.nameChangeHandler(event , person.id)}
             click = {() => this.deletePersonHandler(index)} // We can use arrow function instead of bind indes of delete handle 
             /> 
           })
