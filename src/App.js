@@ -80,10 +80,22 @@ class App extends Component {
     {
       style.backgroundColor = 'green';
     }
-    return (
+
+    //let classes = ['red','bold'].join(' '); // Valid CSS Class list We should Space in between colons in join
+
+    let classes = []; // We can use let instead of const
+    if (this.state.persons.length <= 2)
+    {
+      classes.push('red'); // classes = ['red']
+    }
+    if (this.state.persons.length <= 1)
+    {
+      classes.push('bold'); // classes = ['red' , 'bold']
+    }
+    return (  //classes.join is written beacause now classes is an array we need to pass an string
       <div className="App">
        <h1> Hi, I am React App </h1>
-       <p> This is my first Site in React </p>
+       <p className ={classes.join(' ')}> This is my first Site in React </p> 
       <button 
       style = {style}  //Below Syntax is If else Statment using ternary operator in react !!Remember Curely braces is for injecting jsx code in JS 
       onClick ={this.togglePersonHandler}>Toggle button</button>    
