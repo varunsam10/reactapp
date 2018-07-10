@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import PersonClass from './Person/PersonClass'
+import Radium ,{ StyleRoot } from 'radium';   // Added for hover function in button
 
 class App extends Component {
   state = {
@@ -53,7 +54,11 @@ class App extends Component {
       font : 'inherit',
       cursor : 'pointer',
       border : '1px solid blue ',
-      padding : '8px'
+      padding : '8px',
+      ':hover':{
+        backgroundColor :"lightgreen",
+        color:'black'
+      } // We can create javascript property as Strings 
     };
 
     let persons = null;           //Used for Conditional Operator
@@ -75,6 +80,10 @@ class App extends Component {
        </div>
       );
       style.backgroundColor = 'red';
+      style[':hover'] = {   //Should not leave space between style and hover
+        backgroundColor :"salmon",
+        color:'black'
+      }
     }
     else
     {
@@ -93,6 +102,7 @@ class App extends Component {
       classes.push('bold'); // classes = ['red' , 'bold']
     }
     return (  //classes.join is written beacause now classes is an array we need to pass an string
+      <StyleRoot>
       <div className="App">
        <h1> Hi, I am React App </h1>
        <p className ={classes.join(' ')}> This is my first Site in React </p> 
@@ -101,9 +111,10 @@ class App extends Component {
       onClick ={this.togglePersonHandler}>Toggle button</button>    
       {persons}
        </div>
+       </StyleRoot>
     );
     //return React.createElement('div',{className:'App'},React.createElement('h1',null,'Hi, I am React App Does it work'));
   }
 }
 
-export default App;
+export default Radium (App); // Higher Order Component Component Wrapping our component for extra functionalities 
